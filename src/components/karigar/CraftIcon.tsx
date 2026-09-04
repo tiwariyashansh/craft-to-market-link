@@ -1,7 +1,8 @@
+import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import type { IconKey } from "@/lib/karigar/data";
 
-const paths: Record<IconKey, ReactPaths> = {
+const paths: Record<IconKey, ReactNode> = {
   pot: (
     <>
       <path d="M26 14h12M28 14v5c-6 3-10 9-10 16 0 10 6 17 14 17s14-7 14-17c0-7-4-13-10-16v-5" />
@@ -29,8 +30,6 @@ const paths: Record<IconKey, ReactPaths> = {
     </>
   ),
 };
-
-type ReactPaths = React.ReactNode;
 
 export function CraftIcon({
   icon = "pot",
