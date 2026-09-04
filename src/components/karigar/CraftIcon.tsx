@@ -35,8 +35,8 @@ export function CraftIcon({
   icon = "pot",
   className,
 }: {
-  icon?: IconKey;
-  className?: string;
+  icon?: IconKey | undefined;
+  className?: string | undefined;
 }) {
   return (
     <svg
@@ -60,10 +60,10 @@ export function ProductThumb({
   alt,
   className,
 }: {
-  icon?: IconKey;
-  photo?: string;
+  icon?: IconKey | undefined;
+  photo?: string | undefined;
   alt: string;
-  className?: string;
+  className?: string | undefined;
 }) {
   return (
     <div

@@ -173,7 +173,7 @@ function VoiceStep() {
               size="lg"
               className="mt-5 w-full"
               onClick={() => {
-                startDraft(fromTemplate(AI_TEMPLATES[0]));
+                startDraft(fromTemplate(AI_TEMPLATES[0]!));
                 navigate({ to: "/catalog" });
               }}
             >

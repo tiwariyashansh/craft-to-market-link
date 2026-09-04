@@ -47,7 +47,7 @@ function PhotoStep() {
   useEffect(() => {
     if (!running) return;
     if (stage >= STAGES.length) {
-      const template = AI_TEMPLATES[templateCursor++ % AI_TEMPLATES.length];
+      const template = AI_TEMPLATES[templateCursor++ % AI_TEMPLATES.length]!;
       startDraft(fromTemplate(template, photo));
       const t = setTimeout(() => navigate({ to: "/catalog" }), 500);
       return () => clearTimeout(t);

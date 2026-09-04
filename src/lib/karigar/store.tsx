@@ -7,7 +7,7 @@ import {
   type ProductStatus,
 } from "./data";
 
-export type Draft = Partial<Product> & { photo?: string };
+export type Draft = Partial<Product> & { photo?: string | undefined };
 
 export type Language = "en" | "hi";
 
@@ -29,7 +29,7 @@ type Store = {
 
 const StoreContext = createContext<Store | null>(null);
 
-export function fromTemplate(t: AiTemplate, photo?: string): Draft {
+export function fromTemplate(t: AiTemplate, photo?: string | undefined): Draft {
   return { ...t, photo, status: "catalog" };
 }
 

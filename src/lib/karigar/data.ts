@@ -11,7 +11,7 @@ export type Product = {
   tags: string[];
   confidence: number;
   status: ProductStatus;
-  photo?: string;
+  photo?: string | undefined;
   icon: IconKey;
   materialCost: number;
   labourCost: number;
