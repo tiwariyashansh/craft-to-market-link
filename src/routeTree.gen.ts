@@ -14,12 +14,16 @@ import { Route as CatalogRouteImport } from './routes/catalog'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as PublishRouteImport } from './routes/publish'
 import { Route as AddIndexRouteImport } from './routes/add.index'
 import { Route as AddManualRouteImport } from './routes/add.manual'
 import { Route as AddPhotoRouteImport } from './routes/add.photo'
 import { Route as AddVoiceRouteImport } from './routes/add.voice'
 import { Route as BuyersIndexRouteImport } from './routes/buyers.index'
 import { Route as BuyersIdRouteImport } from './routes/buyers.$id'
+import { Route as ProductsIndexRouteImport } from './routes/products.index'
+import { Route as ProductsIdRouteImport } from './routes/products.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -44,6 +48,16 @@ const LoginRoute = LoginRouteImport.update({
 const PricingRoute = PricingRouteImport.update({
   id: '/pricing',
   path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PublishRoute = PublishRouteImport.update({
+  id: '/publish',
+  path: '/publish',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AddIndexRoute = AddIndexRouteImport.update({
@@ -76,6 +90,16 @@ const BuyersIdRoute = BuyersIdRouteImport.update({
   path: '/buyers/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProductsIndexRoute = ProductsIndexRouteImport.update({
+  id: '/products/',
+  path: '/products/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsIdRoute = ProductsIdRouteImport.update({
+  id: '/products/$id',
+  path: '/products/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -83,12 +107,16 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof DashboardRoute
   '/login': typeof LoginRoute
   '/pricing': typeof PricingRoute
+  '/profile': typeof ProfileRoute
+  '/publish': typeof PublishRoute
   '/add/manual': typeof AddManualRoute
   '/add/photo': typeof AddPhotoRoute
   '/add/voice': typeof AddVoiceRoute
   '/buyers/$id': typeof BuyersIdRoute
+  '/products/$id': typeof ProductsIdRoute
   '/add/': typeof AddIndexRoute
   '/buyers/': typeof BuyersIndexRoute
+  '/products/': typeof ProductsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -96,12 +124,16 @@ export interface FileRoutesByTo {
   '/dashboard': typeof DashboardRoute
   '/login': typeof LoginRoute
   '/pricing': typeof PricingRoute
+  '/profile': typeof ProfileRoute
+  '/publish': typeof PublishRoute
   '/add/manual': typeof AddManualRoute
   '/add/photo': typeof AddPhotoRoute
   '/add/voice': typeof AddVoiceRoute
   '/buyers/$id': typeof BuyersIdRoute
+  '/products/$id': typeof ProductsIdRoute
   '/add': typeof AddIndexRoute
   '/buyers': typeof BuyersIndexRoute
+  '/products': typeof ProductsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -110,12 +142,16 @@ export interface FileRoutesById {
   '/dashboard': typeof DashboardRoute
   '/login': typeof LoginRoute
   '/pricing': typeof PricingRoute
+  '/profile': typeof ProfileRoute
+  '/publish': typeof PublishRoute
   '/add/manual': typeof AddManualRoute
   '/add/photo': typeof AddPhotoRoute
   '/add/voice': typeof AddVoiceRoute
   '/buyers/$id': typeof BuyersIdRoute
+  '/products/$id': typeof ProductsIdRoute
   '/add/': typeof AddIndexRoute
   '/buyers/': typeof BuyersIndexRoute
+  '/products/': typeof ProductsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -125,12 +161,16 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/login'
     | '/pricing'
+    | '/profile'
+    | '/publish'
     | '/add/manual'
     | '/add/photo'
     | '/add/voice'
     | '/buyers/$id'
+    | '/products/$id'
     | '/add/'
     | '/buyers/'
+    | '/products/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -138,12 +178,16 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/login'
     | '/pricing'
+    | '/profile'
+    | '/publish'
     | '/add/manual'
     | '/add/photo'
     | '/add/voice'
     | '/buyers/$id'
+    | '/products/$id'
     | '/add'
     | '/buyers'
+    | '/products'
   id:
     | '__root__'
     | '/'
@@ -151,12 +195,16 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/login'
     | '/pricing'
+    | '/profile'
+    | '/publish'
     | '/add/manual'
     | '/add/photo'
     | '/add/voice'
     | '/buyers/$id'
+    | '/products/$id'
     | '/add/'
     | '/buyers/'
+    | '/products/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -165,12 +213,16 @@ export interface RootRouteChildren {
   DashboardRoute: typeof DashboardRoute
   LoginRoute: typeof LoginRoute
   PricingRoute: typeof PricingRoute
+  ProfileRoute: typeof ProfileRoute
+  PublishRoute: typeof PublishRoute
   AddManualRoute: typeof AddManualRoute
   AddPhotoRoute: typeof AddPhotoRoute
   AddVoiceRoute: typeof AddVoiceRoute
   BuyersIdRoute: typeof BuyersIdRoute
+  ProductsIdRoute: typeof ProductsIdRoute
   AddIndexRoute: typeof AddIndexRoute
   BuyersIndexRoute: typeof BuyersIndexRoute
+  ProductsIndexRoute: typeof ProductsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -208,6 +260,20 @@ declare module '@tanstack/react-router' {
       path: '/pricing'
       fullPath: '/pricing'
       preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/publish': {
+      id: '/publish'
+      path: '/publish'
+      fullPath: '/publish'
+      preLoaderRoute: typeof PublishRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/add/': {
@@ -252,6 +318,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BuyersIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/products/': {
+      id: '/products/'
+      path: '/products'
+      fullPath: '/products/'
+      preLoaderRoute: typeof ProductsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/$id': {
+      id: '/products/$id'
+      path: '/products/$id'
+      fullPath: '/products/$id'
+      preLoaderRoute: typeof ProductsIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -261,12 +341,16 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardRoute: DashboardRoute,
   LoginRoute: LoginRoute,
   PricingRoute: PricingRoute,
+  ProfileRoute: ProfileRoute,
+  PublishRoute: PublishRoute,
   AddManualRoute: AddManualRoute,
   AddPhotoRoute: AddPhotoRoute,
   AddVoiceRoute: AddVoiceRoute,
   BuyersIdRoute: BuyersIdRoute,
+  ProductsIdRoute: ProductsIdRoute,
   AddIndexRoute: AddIndexRoute,
   BuyersIndexRoute: BuyersIndexRoute,
+  ProductsIndexRoute: ProductsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
