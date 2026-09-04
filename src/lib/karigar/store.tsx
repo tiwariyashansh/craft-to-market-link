@@ -39,7 +39,7 @@ export function KarigarProvider({ children }: { children: ReactNode }) {
   const [products, setProducts] = useState<Product[]>(SEED_PRODUCTS);
   const [draft, setDraft] = useState<Draft | null>(null);
   const [language, setLanguage] = useState<Language>("en");
-  const [artisanName, setArtisan] = useState("Meena Devi");
+  const [artisanName, setArtisan] = useState("Yashansh");
 
   const startDraft = useCallback((d: Draft) => setDraft({ ...d }), []);
   const updateDraft = useCallback(
