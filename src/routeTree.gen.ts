@@ -10,14 +10,22 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CatalogRouteImport } from './routes/catalog'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as AddIndexRouteImport } from './routes/add.index'
+import { Route as AddManualRouteImport } from './routes/add.manual'
 import { Route as AddPhotoRouteImport } from './routes/add.photo'
+import { Route as AddVoiceRouteImport } from './routes/add.voice'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CatalogRoute = CatalogRouteImport.update({
+  id: '/catalog',
+  path: '/catalog',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardRoute = DashboardRouteImport.update({
@@ -35,47 +43,94 @@ const AddIndexRoute = AddIndexRouteImport.update({
   path: '/add/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AddManualRoute = AddManualRouteImport.update({
+  id: '/add/manual',
+  path: '/add/manual',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AddPhotoRoute = AddPhotoRouteImport.update({
   id: '/add/photo',
   path: '/add/photo',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AddVoiceRoute = AddVoiceRouteImport.update({
+  id: '/add/voice',
+  path: '/add/voice',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/catalog': typeof CatalogRoute
   '/dashboard': typeof DashboardRoute
   '/login': typeof LoginRoute
+  '/add/manual': typeof AddManualRoute
   '/add/photo': typeof AddPhotoRoute
+  '/add/voice': typeof AddVoiceRoute
   '/add/': typeof AddIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/catalog': typeof CatalogRoute
   '/dashboard': typeof DashboardRoute
   '/login': typeof LoginRoute
+  '/add/manual': typeof AddManualRoute
   '/add/photo': typeof AddPhotoRoute
+  '/add/voice': typeof AddVoiceRoute
   '/add': typeof AddIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/catalog': typeof CatalogRoute
   '/dashboard': typeof DashboardRoute
   '/login': typeof LoginRoute
+  '/add/manual': typeof AddManualRoute
   '/add/photo': typeof AddPhotoRoute
+  '/add/voice': typeof AddVoiceRoute
   '/add/': typeof AddIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dashboard' | '/login' | '/add/photo' | '/add/'
+  fullPaths:
+    | '/'
+    | '/catalog'
+    | '/dashboard'
+    | '/login'
+    | '/add/manual'
+    | '/add/photo'
+    | '/add/voice'
+    | '/add/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dashboard' | '/login' | '/add/photo' | '/add'
-  id: '__root__' | '/' | '/dashboard' | '/login' | '/add/photo' | '/add/'
+  to:
+    | '/'
+    | '/catalog'
+    | '/dashboard'
+    | '/login'
+    | '/add/manual'
+    | '/add/photo'
+    | '/add/voice'
+    | '/add'
+  id:
+    | '__root__'
+    | '/'
+    | '/catalog'
+    | '/dashboard'
+    | '/login'
+    | '/add/manual'
+    | '/add/photo'
+    | '/add/voice'
+    | '/add/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CatalogRoute: typeof CatalogRoute
   DashboardRoute: typeof DashboardRoute
   LoginRoute: typeof LoginRoute
+  AddManualRoute: typeof AddManualRoute
   AddPhotoRoute: typeof AddPhotoRoute
+  AddVoiceRoute: typeof AddVoiceRoute
   AddIndexRoute: typeof AddIndexRoute
 }
 
@@ -86,6 +141,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/catalog': {
+      id: '/catalog'
+      path: '/catalog'
+      fullPath: '/catalog'
+      preLoaderRoute: typeof CatalogRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard': {
@@ -109,6 +171,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AddIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/add/manual': {
+      id: '/add/manual'
+      path: '/add/manual'
+      fullPath: '/add/manual'
+      preLoaderRoute: typeof AddManualRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/add/photo': {
       id: '/add/photo'
       path: '/add/photo'
@@ -116,14 +185,24 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AddPhotoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/add/voice': {
+      id: '/add/voice'
+      path: '/add/voice'
+      fullPath: '/add/voice'
+      preLoaderRoute: typeof AddVoiceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CatalogRoute: CatalogRoute,
   DashboardRoute: DashboardRoute,
   LoginRoute: LoginRoute,
+  AddManualRoute: AddManualRoute,
   AddPhotoRoute: AddPhotoRoute,
+  AddVoiceRoute: AddVoiceRoute,
   AddIndexRoute: AddIndexRoute,
 }
 export const routeTree = rootRouteImport
