@@ -13,10 +13,13 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as CatalogRouteImport } from './routes/catalog'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as AddIndexRouteImport } from './routes/add.index'
 import { Route as AddManualRouteImport } from './routes/add.manual'
 import { Route as AddPhotoRouteImport } from './routes/add.photo'
 import { Route as AddVoiceRouteImport } from './routes/add.voice'
+import { Route as BuyersIndexRouteImport } from './routes/buyers.index'
+import { Route as BuyersIdRouteImport } from './routes/buyers.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -36,6 +39,11 @@ const DashboardRoute = DashboardRouteImport.update({
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PricingRoute = PricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AddIndexRoute = AddIndexRouteImport.update({
@@ -58,26 +66,42 @@ const AddVoiceRoute = AddVoiceRouteImport.update({
   path: '/add/voice',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BuyersIndexRoute = BuyersIndexRouteImport.update({
+  id: '/buyers/',
+  path: '/buyers/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BuyersIdRoute = BuyersIdRouteImport.update({
+  id: '/buyers/$id',
+  path: '/buyers/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/catalog': typeof CatalogRoute
   '/dashboard': typeof DashboardRoute
   '/login': typeof LoginRoute
+  '/pricing': typeof PricingRoute
   '/add/manual': typeof AddManualRoute
   '/add/photo': typeof AddPhotoRoute
   '/add/voice': typeof AddVoiceRoute
+  '/buyers/$id': typeof BuyersIdRoute
   '/add/': typeof AddIndexRoute
+  '/buyers/': typeof BuyersIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/catalog': typeof CatalogRoute
   '/dashboard': typeof DashboardRoute
   '/login': typeof LoginRoute
+  '/pricing': typeof PricingRoute
   '/add/manual': typeof AddManualRoute
   '/add/photo': typeof AddPhotoRoute
   '/add/voice': typeof AddVoiceRoute
+  '/buyers/$id': typeof BuyersIdRoute
   '/add': typeof AddIndexRoute
+  '/buyers': typeof BuyersIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -85,10 +109,13 @@ export interface FileRoutesById {
   '/catalog': typeof CatalogRoute
   '/dashboard': typeof DashboardRoute
   '/login': typeof LoginRoute
+  '/pricing': typeof PricingRoute
   '/add/manual': typeof AddManualRoute
   '/add/photo': typeof AddPhotoRoute
   '/add/voice': typeof AddVoiceRoute
+  '/buyers/$id': typeof BuyersIdRoute
   '/add/': typeof AddIndexRoute
+  '/buyers/': typeof BuyersIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -97,30 +124,39 @@ export interface FileRouteTypes {
     | '/catalog'
     | '/dashboard'
     | '/login'
+    | '/pricing'
     | '/add/manual'
     | '/add/photo'
     | '/add/voice'
+    | '/buyers/$id'
     | '/add/'
+    | '/buyers/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/catalog'
     | '/dashboard'
     | '/login'
+    | '/pricing'
     | '/add/manual'
     | '/add/photo'
     | '/add/voice'
+    | '/buyers/$id'
     | '/add'
+    | '/buyers'
   id:
     | '__root__'
     | '/'
     | '/catalog'
     | '/dashboard'
     | '/login'
+    | '/pricing'
     | '/add/manual'
     | '/add/photo'
     | '/add/voice'
+    | '/buyers/$id'
     | '/add/'
+    | '/buyers/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -128,10 +164,13 @@ export interface RootRouteChildren {
   CatalogRoute: typeof CatalogRoute
   DashboardRoute: typeof DashboardRoute
   LoginRoute: typeof LoginRoute
+  PricingRoute: typeof PricingRoute
   AddManualRoute: typeof AddManualRoute
   AddPhotoRoute: typeof AddPhotoRoute
   AddVoiceRoute: typeof AddVoiceRoute
+  BuyersIdRoute: typeof BuyersIdRoute
   AddIndexRoute: typeof AddIndexRoute
+  BuyersIndexRoute: typeof BuyersIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -164,6 +203,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pricing': {
+      id: '/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/add/': {
       id: '/add/'
       path: '/add'
@@ -192,6 +238,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AddVoiceRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/buyers/': {
+      id: '/buyers/'
+      path: '/buyers'
+      fullPath: '/buyers/'
+      preLoaderRoute: typeof BuyersIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/buyers/$id': {
+      id: '/buyers/$id'
+      path: '/buyers/$id'
+      fullPath: '/buyers/$id'
+      preLoaderRoute: typeof BuyersIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -200,10 +260,13 @@ const rootRouteChildren: RootRouteChildren = {
   CatalogRoute: CatalogRoute,
   DashboardRoute: DashboardRoute,
   LoginRoute: LoginRoute,
+  PricingRoute: PricingRoute,
   AddManualRoute: AddManualRoute,
   AddPhotoRoute: AddPhotoRoute,
   AddVoiceRoute: AddVoiceRoute,
+  BuyersIdRoute: BuyersIdRoute,
   AddIndexRoute: AddIndexRoute,
+  BuyersIndexRoute: BuyersIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
